@@ -41,6 +41,8 @@ export interface EventRow {
   package_title: string | null;
   package_images: string[];
   custom_question: string | null;
+  spaces_title: string | null;
+  spaces_text: string | null;
   created_at: string;
 }
 

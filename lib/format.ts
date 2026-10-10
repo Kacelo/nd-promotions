@@ -1,8 +1,11 @@
 const TZ = 'Africa/Windhoek';
 
-export function formatEventDate(isoDate: string, style: 'short' | 'long' = 'short') {
+export function formatEventDate(isoDate: string, style: 'short' | 'long' | 'long-no-weekday' = 'short') {
   // event_date is a plain date; anchor at noon UTC so it never shifts a day.
   const d = new Date(`${isoDate}T12:00:00Z`);
+  if (style === 'long-no-weekday') {
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  }
   if (style === 'long') {
     return d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
   }

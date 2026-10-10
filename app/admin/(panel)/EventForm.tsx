@@ -149,6 +149,14 @@ export default function EventForm({ event }: Props) {
           <input className="a-input" name="custom_question" defaultValue={e?.custom_question ?? ''} />
         </label>
         <div className="a-grid">
+          <label className="a-label">Tickets card headline <span className="hint">Replaces a spaces count, e.g. “25 women. One table.”</span>
+            <input className="a-input" name="spaces_title" defaultValue={e?.spaces_title ?? ''} />
+          </label>
+          <label className="a-label">Tickets card line <span className="hint">Optional, shown under the headline</span>
+            <input className="a-input" name="spaces_text" defaultValue={e?.spaces_text ?? ''} />
+          </label>
+        </div>
+        <div className="a-grid">
           <label className="a-label">Dress code title<input className="a-input" name="dress_code_title" defaultValue={e?.dress_code_title ?? ''} placeholder="Soft Neutrals & Rich Tones" /></label>
           <label className="a-label">Dress code colours <span className="hint">Hex codes, comma separated</span>
             <input className="a-input" name="dress_palette" defaultValue={e?.dress_palette.join(', ') ?? ''} placeholder="#efe4da, #d8aaa4, #4a2c22" />

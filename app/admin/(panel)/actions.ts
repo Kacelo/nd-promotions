@@ -92,6 +92,8 @@ export async function saveEvent(_prev: FormState, fd: FormData): Promise<FormSta
     package_title: orNull(str(fd, 'package_title')),
     package_images: [0, 1, 2].map((i) => str(fd, `package_image_url_${i}`)).filter(Boolean),
     custom_question: orNull(str(fd, 'custom_question')),
+    spaces_title: orNull(str(fd, 'spaces_title')),
+    spaces_text: orNull(str(fd, 'spaces_text')),
   };
 
   const q = id
