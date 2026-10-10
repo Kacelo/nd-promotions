@@ -46,7 +46,7 @@ npm run dev                  # http://localhost:3000  and  /admin
 ## Notes
 - Times shown in Africa/Windhoek.
 - If someone uploads a file but never submits, the orphaned file stays in the private bucket (harmless). Clear it from Storage occasionally if you like.
-- Supabase free projects pause after a week of no activity — upgrade or visit the dashboard before launch day.
+- Supabase free projects pause after a week of no activity. `netlify/functions/supabase-keep-alive.ts` runs a tiny query every day at 06:00 UTC to prevent that (check it under Netlify → Logs → Functions).
 - Hero / about / package photos: upload in *Edit event* (stored in the public `event-media` bucket). They're resized to 2000px and compressed to WebP in the browser before upload. Without them the page uses a soft blush gradient.
 
 ## Structure
