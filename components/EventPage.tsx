@@ -188,13 +188,27 @@ export default function EventPage({
                 </div>
               </div>
             )}
-            <div className="spaces">
+          </section>
+
+          <section className="card spaces-card">
+            {event.spaces_title && <h3>{event.spaces_title}</h3>}
+            {event.spaces_text && <p>{event.spaces_text}</p>}
+            {(event.spaces_title || event.spaces_text) && <div className="rule" />}
+            <strong>
               {open
-                ? spotsLeft === event.capacity
-                  ? `Only ${event.capacity} spaces available.`
-                  : `${spotsLeft} of ${event.capacity} spaces left.`
-                : `All ${event.capacity} spaces reserved.`}
-            </div>
+                ? "Tickets now open"
+                : spotsLeft === 0
+                ? "Fully booked"
+                : "RSVPs closed"}
+            </strong>
+            <span className="when">
+              {[
+                formatEventDate(event.event_date, "long-no-weekday"),
+                event.venue?.replace(/\.\s*$/, ""),
+              ]
+                .filter(Boolean)
+                .join(" · ")}
+            </span>
           </section>
 
           {(event.dress_code_title || event.dress_code_text) && (
@@ -218,7 +232,6 @@ export default function EventPage({
             <RsvpForm
               open={open}
               closedByCapacity={spotsLeft === 0}
-              spotsLeft={spotsLeft}
               event={{
                 slug: event.slug,
                 name: event.name,

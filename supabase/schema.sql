@@ -42,6 +42,8 @@ create table if not exists public.events (
   package_title     text,                    -- optional heading above the package images
   package_images    text[] not null default '{}',  -- up to 3 package/offer image URLs, shown under the inclusions
   custom_question   text,                    -- optional extra question, e.g. "What are you currently becoming?"
+  spaces_title      text,                    -- headline on the tickets card, e.g. "25 women. One table."
+  spaces_text       text,                    -- line under it, e.g. "A limited gathering for women in different seasons of becoming."
   created_at        timestamptz not null default now(),
   updated_at        timestamptz not null default now()
 );
@@ -53,6 +55,8 @@ alter table public.events add column if not exists ewallet_name text;
 alter table public.events add column if not exists ewallet_providers text[] not null default '{}';
 alter table public.events add column if not exists package_title text;
 alter table public.events add column if not exists package_images text[] not null default '{}';
+alter table public.events add column if not exists spaces_title text;
+alter table public.events add column if not exists spaces_text text;
 do $$ begin
   alter table public.events add constraint events_payment_method_check check (payment_method in ('bank', 'ewallet'));
 exception when duplicate_object then null; end $$;

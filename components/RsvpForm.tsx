@@ -23,7 +23,7 @@ type PublicEvent = {
   custom_question: string | null;
 };
 
-type Props = { event: PublicEvent; open: boolean; closedByCapacity: boolean; spotsLeft: number };
+type Props = { event: PublicEvent; open: boolean; closedByCapacity: boolean };
 
 function ClosedMessage({ capacity, byCapacity }: { capacity: number; byCapacity: boolean }) {
   return (
@@ -39,7 +39,7 @@ function ClosedMessage({ capacity, byCapacity }: { capacity: number; byCapacity:
   );
 }
 
-export default function RsvpForm({ event, open, closedByCapacity, spotsLeft }: Props) {
+export default function RsvpForm({ event, open, closedByCapacity }: Props) {
   const [state, setState] = useState<'form' | 'sending' | 'done' | 'closed'>(open ? 'form' : 'closed');
   const [file, setFile] = useState<File | null>(null);
   const [drag, setDrag] = useState(false);
@@ -155,7 +155,6 @@ export default function RsvpForm({ event, open, closedByCapacity, spotsLeft }: P
       <div className="rsvp-head">
         <h2>RSVP</h2>
         <p>Please complete the form below to secure your place at {event.name}.</p>
-        {spotsLeft <= 10 && <span className="left-count">{spotsLeft} {spotsLeft === 1 ? 'space' : 'spaces'} left</span>}
       </div>
 
       {error && <div className="form-error" role="alert">{error}</div>}
